@@ -1,0 +1,16 @@
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    # 选择基准元素（这里选择最后一个元素）
+    pivot = arr[-1]
+    # 分区：小于基准的元素放在左侧，大于基准的元素放在右侧
+    left = [x for x in arr[:-1] if x <= pivot]
+    right = [x for x in arr[:-1] if x > pivot]
+    # 递归排序并合并
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+# 示例
+arr = [3, 6, 8, 10, 1, 2, 1]
+sorted_arr = quick_sort(arr)
+print(sorted_arr)  # 输出: [1, 1, 2, 3, 6, 8, 10]
