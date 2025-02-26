@@ -1,0 +1,23 @@
+def counting_sort(arr):
+    # 找到列表中的最大值
+    max_val = max(arr)
+    # 初始化计数数组
+    count = [0] * (max_val + 1)
+    # 统计每个元素的出现次数
+    for num in arr:
+        count[num] += 1
+    # 累加计数数组，得到每个元素的最终位置
+    for i in range(1, len(count)):
+        count[i] += count[i - 1]
+    # 初始化结果数组
+    output = [0] * len(arr)
+    # 反向遍历原始列表，将元素放入结果数组
+    for num in reversed(arr):
+        output[count[num] - 1] = num
+        count[num] -= 1
+    return output
+
+# 示例
+arr = [4, 2, 2, 8, 3, 3, 1]
+sorted_arr = counting_sort(arr)
+print(sorted_arr)  # 输出: [1, 2, 2, 3, 3, 4, 8]
